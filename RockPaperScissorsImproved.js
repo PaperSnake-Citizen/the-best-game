@@ -76,7 +76,7 @@ updateScoreElem();
 document.querySelector('.js-result')
 .innerHTML = result;
 document.querySelector('.js-moves').innerHTML = `You
-<img src="images/${playerMove}.png" class="move-img"> <img src="images/${computerMove}.png" class="move-img">  Computer `;
+<img src="${playerMove}.png" class="move-img"> <img src="${computerMove}.png" class="move-img">  Computer `;
 
 
 }
