@@ -6,7 +6,7 @@
   <title>Whack A Mole!</title>
   <style>
     body, .btn-area {
-  cursor: url('/images/hammerpointer.png'), default;
+  cursor: url('hammerpointer.png'), default;
 }
     body {
       font-family: Arial;
@@ -38,7 +38,7 @@
       padding: 0px;
       background: transparent;
       border: none;
-      cursor: url("/images/hammerpointer.png"), default;
+      cursor: url("hammerpointer.png"), default;
     }
     .beaver-img{
       width: 60px;
@@ -50,8 +50,8 @@
   <div class="js-timer">10</div>
   <div class="js-score-board score-board">Score: 0</div>
   <div class="btn-area">
-    <button class="cl-btn" onclick="startTimer(); clickButton(); moveButton();"><img src="images/beaver.png" class="beaver-img"></button>
-    <img src="images/background.png">
+    <button class="cl-btn" onclick="startTimer(); clickButton(); moveButton();"><img src="beaver.png" class="beaver-img"></button>
+    <img src="background.png">
     <div class="control-audio"></div>
   </div>
   <script>
@@ -93,7 +93,7 @@
         timerElem.innerHTML = '10';
         isClicked = false;
       }
-      control.innerHTML = `<audio autoplay><source src="images/hitsfx.mp3" type="audio/mp3"></audio>`
+      control.innerHTML = `<audio autoplay><source src="hitsfx.mp3" type="audio/mp3"></audio>`
     }
     function moveButton() {
       
