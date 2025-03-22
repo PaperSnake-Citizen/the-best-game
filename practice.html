@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whack A Mole!</title>
+  <style>
+    body, .btn-area {
+  cursor: url('/images/hammerpointer.png'), default;
+}
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: rgb(11, 124, 194);
+    }
+    .btn-area{
+      border: 2px solid rgb(0, 0, 0);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 60%;
+      overflow: hidden;
+      
+    }
+    .score-board{
+      position: absolute;
+      left: 85%;
+      top: 12%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: white;
+      padding: 10px;
+    }
+    .cl-btn{
+      position: absolute;
+      padding: 0px;
+      background: transparent;
+      border: none;
+      cursor: url("/images/hammerpointer.png"), default;
+    }
+    .beaver-img{
+      width: 60px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Whack The Mole As Many Times As You Can In Under 10 Seconds!</h2>
+  <div class="js-timer">10</div>
+  <div class="js-score-board score-board">Score: 0</div>
+  <div class="btn-area">
+    <button class="cl-btn" onclick="startTimer(); clickButton(); moveButton();"><img src="images/beaver.png" class="beaver-img"></button>
+    <img src="images/background.png">
+    <div class="control-audio"></div>
+  </div>
+  <script>
+    let isClicked = false;
+    let timer;
+    let timerElem;
+    function startTimer() { if(!isClicked) {
+      isClicked = true;
+      setTimeout(
+      function(){
+        const score = document.querySelector('.js-score-board').innerHTML;
+      alert(`Times Up! ${score}`);},
+       10000);
+        timerElem = document.querySelector('.js-timer');
+        timer = Number(timerElem.innerHTML);
+        let timerUpdate = setInterval(function() {
+          if(timer > 0) {
+            timer--;
+            timerElem.innerHTML = timer;
+          }
+          else {
+            clearInterval(timerUpdate);
+          }
+        }, 1000)}
+    } 
+    let score = 0;
+    
+    function clickButton() {
+      const scoreElem = document.querySelector('.js-score-board');
+      const clickButton = document.querySelector('.cl-btn');
+      const control = document.querySelector('.control-audio');
+      let btnCont = document.querySelector('.btn-operator');
+      score = score + 1;
+      scoreElem.innerHTML = `Score: ${score}`;
+      
+      if(timer === 0) {
+        score = 0;
+        document.querySelector('.js-score-board').innerHTML = `Score: ${score}`; 
+        timerElem.innerHTML = '10';
+        isClicked = false;
+      }
+      control.innerHTML = `<audio autoplay><source src="images/hitsfx.mp3" type="audio/mp3"></audio>`
+    }
+    function moveButton() {
+      
+      let container = document.querySelector('.btn-area');
+      let btn = document.querySelector('.cl-btn');
+
+      let maxX = container.clientWidth - btn.clientWidth;
+      let maxY = container.clientHeight - btn.clientHeight;
+    
+      let x = Math.random() * maxX;
+      let y = Math.random() * maxY;
+
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;   
+    }
+  </script>
+</body>
+</html>
